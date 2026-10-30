@@ -1,9 +1,9 @@
-import userModel from "../models/user.model.js";
+import userModel from "../models/users/user.model.js";
 import config from "../config/config.js"
 import bcrypt from "bcrypt"
 import { randomUUID } from "crypto";
 import jwt from "jsonwebtoken"
-import SessionModel from "../models/session.model.js";
+import SessionModel from "../models/users/session.model.js";
 
 
 

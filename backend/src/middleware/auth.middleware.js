@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import config from "../config/config.js";
-import SessionModel from "../models/session.model.js";
+import SessionModel from "../models/users/session.model.js"
 
 export async function authmiddleware(req, res, next) {
   try {
@@ -12,7 +12,6 @@ export async function authmiddleware(req, res, next) {
     // extract the token and verify it
     const token = authHeader.split(" ")[1];
     const decode = jwt.verify(token, config.JWT_SECRET);
-    console.log("ACCESS TOKEN SESSION ID:", decode.sessionId); //remove
 
     //
     const session = await SessionModel.findById(decode.sessionId);
