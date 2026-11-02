@@ -1,4 +1,5 @@
 import api from "../../../lib/axios";
+let refreshPromise = null; // use in refresh token (to solve duplicate problem)
 
 // register
 export const registerUser=async (data)=>{
@@ -12,22 +13,28 @@ export const loginUser=async (data)=>{
 }
 // get current user
 export const getMe=async ()=>{
-    const response=await api.get("v1/auth/getMe")
+    const response=await api.get("/v1/auth/getMe")
     return response.data
 }
 // refresh token 
 export const refreshToken=async()=>{
-    const response=await api.post("v1/auth/refreshToken")
-    return response.data
+    if(!refreshPromise){
+        refreshPromise=(api.post("/v1/auth/refreshToken")).
+        then((response)=>response.data).
+        finally(()=>{
+            refreshPromise=null;
+        })
+    }
+    return refreshPromise;
 }
 
 // Logout 
 export const logoutUser=async()=>{
-    const response=await api.post("v1/auth/logout")
+    const response=await api.post("/v1/auth/logout")
     return response.data
 }
 
 export const logoutAll=async()=>{
-    const response=await api.post("v1/auth/logoutAll")
+    const response=await api.post("/v1/auth/logoutAll")
     return response.data
 }

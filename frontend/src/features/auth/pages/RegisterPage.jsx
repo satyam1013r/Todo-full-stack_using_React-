@@ -1,8 +1,20 @@
-
+import RegisterForm from "../components/RegisterForm"
 
 function RegisterPage() {
   return (
-    <div>RegisterPage</div>
+    <main className="register-page">
+      <div className="register-page__container">
+      <h1 className="register-page__title">
+        Create an account
+        </h1>
+      <p  className="register-page__description">
+        Register to start managing your todos.
+        </p>
+        
+      <RegisterForm/>
+
+      </div>
+    </main>
   )
 }
 

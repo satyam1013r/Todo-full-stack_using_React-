@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react" // creates a Context object that we can use to share information between components.
 import { setAccessToken } from "../lib/axios"
-import { refreshToken ,getMe , loginUser , logoutUser,logoutAll} from "../features/auth/api/auth.api"
+import { refreshToken ,getMe , loginUser , logoutUser,logoutAll as logoutAllApi} from "../features/auth/api/auth.api"
 
 
 
@@ -35,7 +35,7 @@ export function AuthProvider({children}){
             setAccessToken(response.accessToken)// 2- set token
             const userResponse=await getMe() // 3- fetch user
             setUser(userResponse.user) // store Info 
-            return userResponse.usesr
+            return userResponse.user
         }
         // logout 
         const logout=async()=>{
@@ -48,9 +48,9 @@ export function AuthProvider({children}){
                     setUser(null)            }
         }
         // logout all
-        const logoutALLuser=async()=>{
+        const logoutAll=async()=>{
             try{
-                await logoutAll()
+                await logoutAllApi()
             }
             finally{
                 setAccessToken(null)
@@ -65,7 +65,7 @@ export function AuthProvider({children}){
             loading,
             login,
             logout,
-            logoutALLuser
+            logoutAll
         }
         return(
             <AuthContext.Provider value={value}>
