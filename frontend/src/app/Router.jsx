@@ -2,6 +2,8 @@ import { createBrowserRouter , Navigate} from "react-router-dom";
 import LoginPage from "../features/auth/pages/LoginPage";
 import RegisterPage from "../features/auth/pages/RegisterPage";
 import TodoPage from "../features/todos/pages/TodoPage";
+
+import ProtectedRoute from "../components/ProtectedRoute";
 const router=createBrowserRouter([
     {
         path:"/",
@@ -16,9 +18,14 @@ const router=createBrowserRouter([
         element:<RegisterPage/>
     },
     {
-        path:  "/todos",
-        element:<TodoPage/>
-    },
+        element:<ProtectedRoute/>,
+        children:[
+            {
+                path:"/todos",
+                element:<TodoPage/>
+            }
+        ]
+    }
     
 ])
 
