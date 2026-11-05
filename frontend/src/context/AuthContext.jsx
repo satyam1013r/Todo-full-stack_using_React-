@@ -31,11 +31,18 @@ export function AuthProvider({children}){
         },[])
             // login 
         const login =async (data)=>{
+            try {
             const response =await loginUser(data)// 1-send to backend
             setAccessToken(response.accessToken)// 2- set token
             const userResponse=await getMe() // 3- fetch user
             setUser(userResponse.user) // store Info 
             return userResponse.user
+                
+            } catch (error) {// backend login access stored but getme failed but the access token remains stored
+                setAccessToken(null);
+                setUser(null);
+                throw error;
+            }
         }
         // logout 
         const logout=async()=>{
