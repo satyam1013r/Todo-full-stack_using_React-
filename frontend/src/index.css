@@ -1,0 +1,1191 @@
+
+/* =========================================
+   1. GLOBAL STYLES & DESIGN SYSTEM
+========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  font-family: 'Inter', sans-serif;
+  color: #1e293b;
+  background: #f5f7fb;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+
+  --color-primary: #4f46e5;
+  --color-primary-hover: #4338ca;
+
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-danger: #dc2626;
+
+  --color-text: #1e293b;
+  --color-text-secondary: #64748b;
+
+  --color-background: #f5f7fb;
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  --shadow-card: 0 2px 8px rgba(15, 23, 42, 0.04);
+  --shadow-hover: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+input,
+select {
+  color: var(--color-text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* =========================================
+   2. TODO PAGE
+========================================= */
+
+.todo-page {
+  min-height: 100vh;
+  padding: 48px 24px;
+}
+
+.todo-page__container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.todo-page__header {
+  margin-bottom: 32px;
+}
+
+.todo-page__title {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  color: var(--color-text);
+}
+
+.todo-page__description {
+  margin-top: 8px;
+  color: var(--color-text-secondary);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.todo-page__create {
+  padding: 24px;
+  margin-bottom: 28px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.todo-page__section-title {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.todo-page__loading,
+.todo-page__error,
+.todo-page__empty {
+  padding: 24px;
+  margin: 20px 0;
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.todo-page__loading {
+  color: var(--color-text-secondary);
+}
+
+.todo-page__error {
+  color: var(--color-danger);
+  background: #fef2f2;
+}
+
+.todo-page__empty {
+  color: var(--color-text-secondary);
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+}
+
+.todo-page__count {
+  margin-bottom: 16px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+
+/* =========================================
+   3. CREATE TODO FORM
+========================================= */
+
+.todo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.todo-form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.todo-form__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.todo-form__input,
+.todo-form__select {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.todo-form__input:focus,
+.todo-form__select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.todo-form__submit {
+  min-height: 44px;
+  padding: 11px 18px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--color-primary);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.todo-form__submit:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+
+/* =========================================
+   4. SEARCH & FILTERS
+========================================= */
+
+.todo-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 22px;
+  margin-bottom: 24px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.todo-filters__search,
+.todo-filters__group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.todo-filters__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.todo-filters__input,
+.todo-filters__select {
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.todo-filters__input:focus,
+.todo-filters__select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.todo-filters__controls {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.todo-filters__clear {
+  align-self: end;
+  min-height: 42px;
+  padding: 10px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: #f8fafc;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.todo-filters__clear:hover {
+  background: #e2e8f0;
+}
+
+
+/* =========================================
+   5. TODO LIST
+========================================= */
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+
+/* =========================================
+   6. TODO ITEM CARD
+========================================= */
+
+.todo-item {
+  position: relative;
+  padding: 22px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+
+  /* Important: no transform here.
+     It can interfere with fixed modal positioning. */
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.todo-item:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.todo-item--completed {
+  background: #fbfefc;
+}
+
+.todo-item__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.todo-item__title {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.todo-item--completed .todo-item__title {
+  color: var(--color-text-secondary);
+  text-decoration: line-through;
+}
+
+.todo-item__status {
+  flex-shrink: 0;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.todo-item__status--completed {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.todo-item__status--pending {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+
+/* =========================================
+   7. TODO DETAILS
+========================================= */
+
+.todo-item__details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 16px 0;
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.todo-item__detail {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.todo-item__label {
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.todo-item__due-date {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* =========================================
+   8. PRIORITY BADGES
+========================================= */
+
+.todo-item__priority {
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.todo-item__priority--low {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.todo-item__priority--medium {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.todo-item__priority--high {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+
+/* =========================================
+   9. TODO FOOTER & ACTIONS
+========================================= */
+
+.todo-item__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 18px;
+}
+
+.todo-item__complete {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.todo-item__checkbox {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+.todo-item__actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.todo-item__edit,
+.todo-item__delete {
+  padding: 8px 13px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+}
+
+.todo-item__edit {
+  color: var(--color-primary);
+}
+
+.todo-item__edit:hover:not(:disabled) {
+  background: #eef2ff;
+  border-color: #c7d2fe;
+}
+
+.todo-item__delete {
+  color: var(--color-danger);
+}
+
+.todo-item__delete:hover:not(:disabled) {
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+
+/* =========================================
+   10. EDIT TODO FORM
+========================================= */
+
+.todo-item__edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.todo-item__edit-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.todo-item__edit-group label {
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.todo-item__edit-input,
+.todo-item__edit-select {
+  width: 100%;
+  min-height: 43px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  font-size: 14px;
+  outline: none;
+}
+
+.todo-item__edit-input:focus,
+.todo-item__edit-select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.todo-item__edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.todo-item__save,
+.todo-item__cancel {
+  padding: 10px 16px;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.todo-item__save {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.todo-item__save:hover {
+  background: var(--color-primary-hover);
+}
+
+.todo-item__cancel {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.todo-item__cancel:hover {
+  background: #e2e8f0;
+}
+
+
+/* =========================================
+   11. DELETE CONFIRMATION MODAL
+========================================= */
+
+.delete-modal__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(3px);
+
+  animation: modal-overlay-in 0.2s ease;
+}
+
+.delete-modal {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.2);
+
+  text-align: center;
+
+  animation: modal-in 0.2s ease;
+}
+
+.delete-modal__icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 18px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+  background: #fee2e2;
+  color: var(--color-danger);
+
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.delete-modal__title {
+  margin-bottom: 10px;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.delete-modal__description {
+  margin-bottom: 25px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.delete-modal__actions {
+  display: flex;
+  gap: 12px;
+}
+
+.delete-modal__cancel,
+.delete-modal__confirm {
+  flex: 1;
+  min-height: 43px;
+  padding: 11px;
+
+  border: none;
+  border-radius: var(--radius-md);
+
+  font-size: 13px;
+  font-weight: 600;
+
+  transition: background 0.2s;
+}
+
+.delete-modal__cancel {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.delete-modal__cancel:hover:not(:disabled) {
+  background: #e2e8f0;
+}
+
+.delete-modal__confirm {
+  background: var(--color-danger);
+  color: #ffffff;
+}
+
+.delete-modal__confirm:hover:not(:disabled) {
+  background: #b91c1c;
+}
+
+
+/* =========================================
+   12. ANIMATIONS
+========================================= */
+
+@keyframes modal-overlay-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* =========================================
+   13. RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 700px) {
+  .todo-page {
+    padding: 28px 16px;
+  }
+
+  .todo-page__title {
+    font-size: 25px;
+  }
+
+  .todo-page__create {
+    padding: 18px;
+  }
+
+  .todo-filters {
+    padding: 18px;
+  }
+
+  .todo-filters__controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .todo-item {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 450px) {
+  .todo-item__header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .todo-item__details {
+    gap: 24px;
+  }
+
+  .todo-item__footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .todo-item__actions {
+    width: 100%;
+  }
+
+  .todo-item__edit,
+  .todo-item__delete {
+    flex: 1;
+  }
+
+  .todo-item__edit-actions {
+    flex-direction: column;
+  }
+
+  .todo-item__save,
+  .todo-item__cancel {
+    width: 100%;
+  }
+
+  .delete-modal {
+    padding: 24px 20px;
+  }
+}
+
+/* Account controls */
+
+.todo-page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.todo-page__account {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.todo-page__account-email {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.todo-page__account-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.todo-page__logout-button,
+.todo-page__logout-all-button {
+  padding: 9px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.todo-page__logout-button:hover {
+  background: var(--surface-hover);
+}
+
+.todo-page__logout-all-button {
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+.todo-page__logout-all-button:hover {
+  background: #fef2f2;
+}
+
+/* Account confirmation modal */
+
+.account-modal__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(3px);
+}
+
+.account-modal {
+  width: 100%;
+  max-width: 420px;
+  padding: 28px;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  animation: account-modal-enter 0.18s ease-out;
+}
+
+.account-modal__title {
+  margin: 0 0 12px;
+  color: var(--text-primary);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.account-modal__description {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.account-modal__error {
+  margin: 14px 0 0;
+  color: #dc2626;
+  font-size: 13px;
+}
+
+.account-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.account-modal__cancel,
+.account-modal__confirm {
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.account-modal__cancel {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.account-modal__confirm {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+.account-modal__cancel:disabled,
+.account-modal__confirm:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@keyframes account-modal-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .todo-page__account {
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .todo-page__account-actions {
+    width: 100%;
+  }
+}
+
+
+/* =========================================
+   AUTHENTICATION PAGES
+========================================= */
+
+.login-page,
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  background:
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(99, 102, 241, 0.13),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 85%,
+      rgba(139, 92, 246, 0.12),
+      transparent 35%
+    ),
+    #0b1120;
+}
+
+/* =========================================
+   AUTHENTICATION CONTAINERS
+========================================= */
+
+.login-page__container,
+.register-page__container {
+  width: 100%;
+  max-width: 440px;
+  padding: 40px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 20px;
+  background: #111a2e;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================
+   HEADINGS
+========================================= */
+
+.login-page__title,
+.register-page__title {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 30px;
+  font-weight: 750;
+  letter-spacing: -0.8px;
+  line-height: 1.25;
+}
+
+.login-page__description,
+.register-page__description {
+  margin: 12px 0 30px;
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* =========================================
+   AUTH FORMS
+   Supports common form class names
+========================================= */
+
+.login-form,
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-form__group,
+.register-form__group,
+.login-form__field,
+.register-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.login-form label,
+.register-form label,
+.login-form__label,
+.register-form__label {
+  color: #cbd5e1;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* =========================================
+   INPUT FIELDS
+========================================= */
+
+.login-form input,
+.register-form input,
+.login-form__input,
+.register-form__input {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid #334155;
+  border-radius: 9px;
+  outline: none;
+  background: #0b1222;
+  color: #f8fafc;
+  font-family: inherit;
+  font-size: 14px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.login-form input::placeholder,
+.register-form input::placeholder {
+  color: #64748b;
+}
+
+.login-form input:focus,
+.register-form input:focus,
+.login-form__input:focus,
+.register-form__input:focus {
+  border-color: #818cf8;
+  background: #101a30;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.14);
+}
+
+/* =========================================
+   SUBMIT BUTTONS
+========================================= */
+
+.login-form button[type="submit"],
+.register-form button[type="submit"],
+.login-form__submit,
+.register-form__submit {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 4px;
+  border: none;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.login-form button[type="submit"]:hover,
+.register-form button[type="submit"]:hover,
+.login-form__submit:hover,
+.register-form__submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(99, 102, 241, 0.3);
+}
+
+.login-form button[type="submit"]:active,
+.register-form button[type="submit"]:active {
+  transform: translateY(0);
+}
+
+.login-form button:disabled,
+.register-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* =========================================
+   ERROR MESSAGES
+========================================= */
+
+.login-form__error,
+.register-form__error,
+.login-form__message--error,
+.register-form__message--error {
+  padding: 11px 13px;
+  border: 1px solid rgba(248, 113, 113, 0.25);
+  border-radius: 8px;
+  background: rgba(127, 29, 29, 0.18);
+  color: #fca5a5;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* =========================================
+   SUCCESS MESSAGES
+========================================= */
+
+.login-form__success,
+.register-form__success,
+.login-form__message--success,
+.register-form__message--success {
+  padding: 11px 13px;
+  border: 1px solid rgba(74, 222, 128, 0.25);
+  border-radius: 8px;
+  background: rgba(22, 101, 52, 0.18);
+  color: #86efac;
+  font-size: 13px;
+}
+
+/* =========================================
+   LINKS
+========================================= */
+
+.login-form a,
+.register-form a,
+.login-form__link,
+.register-form__link {
+  color: #a5b4fc;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.login-form a:hover,
+.register-form a:hover,
+.login-form__link:hover,
+.register-form__link:hover {
+  color: #c4b5fd;
+  text-decoration: underline;
+}
+
+/* =========================================
+   FORM FOOTER
+========================================= */
+
+.login-form__footer,
+.register-form__footer {
+  margin: 2px 0 0;
+  color: #94a3b8;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 520px) {
+  .login-page,
+  .register-page {
+    padding: 20px 14px;
+  }
+
+  .login-page__container,
+  .register-page__container {
+    padding: 28px 22px;
+    border-radius: 15px;
+  }
+
+  .login-page__title,
+  .register-page__title {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 360px) {
+  .login-page__container,
+  .register-page__container {
+    padding: 24px 18px;
+  }
+}

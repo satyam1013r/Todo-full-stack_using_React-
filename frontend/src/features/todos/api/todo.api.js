@@ -8,10 +8,15 @@ export const createTodo=async(data)=>{
 }
 
 // Get all todo
-export const getAllTodo=async()=>{
-    const response=await api.get("/todos")
-    return response.data
-}
+
+export const getAllTodo = async (params = {}) => {
+  const response = await api.get("/todos", {
+    params,
+  });
+
+  return response.data;
+};
+
 
 // Get single Todo
 export const getOneTodo=async(id)=>{
@@ -20,13 +25,14 @@ export const getOneTodo=async(id)=>{
 }
 
 //update 
-export const updateTodo=async(data,id)=>{
-    const response= await api.patch(`/todos/${id}`)
-    return response.data
-}
+export const updateTodo = async (id, data) => {
+    const response = await api.patch(`/todos/${id}`, data);
+    return response.data;
+};
 
 // delete 
 export const deleteTodo=async(id)=>{
     const response =await api.delete(`/todos/${id}`)
     return response.data
 }
+
